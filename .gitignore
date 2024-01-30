@@ -1,2 +1,2 @@
-/go-api/.docker
-/microsservico-pedidos/docker
+go-api/docker
+microsservico-pedidos/docker
