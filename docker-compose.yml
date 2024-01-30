@@ -1,0 +1,32 @@
+version: '3'
+
+# banco de dados para API GO
+services:
+  mysql:
+    image: mysql:latest
+    container_name: db-produtos-go
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: catalog_product
+      MYSQL_PASSWORD: root
+    ports: 
+      - 3305:3306
+    volumes:
+      - ./go-api/docker/mysql:/var/lib/mysql 
+
+---
+# banco de dados para API Nest.js
+services:
+  db:
+    image: mysql:latest
+    container_name: db-pagamento-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: pagamento_nest
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports: 
+      - 3304:3306
+    volumes:
+      - ./microsservico-pedidos/docker/mysql:/var/lib/mysql 
