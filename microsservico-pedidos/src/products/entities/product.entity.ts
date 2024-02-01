@@ -1,11 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity('product')
 export class Product {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;
-
+ 
     @Column()
     name: string;
     
@@ -15,6 +15,6 @@ export class Product {
     @Column()
     image_url: string;
 
-    @Column()
+    @Column({type: 'decimal', precision: 10, scale: 2})
     price: number;
 }
