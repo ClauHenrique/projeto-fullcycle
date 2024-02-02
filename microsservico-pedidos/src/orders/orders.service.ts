@@ -17,6 +17,7 @@ export class OrdersService {
 
   async create(createOrderDto: CreateOrderDto) {
    try {
+    
 
     // pegar os ids dos produtos
     const productIds = createOrderDto.items.map((item) => item.product_id)
@@ -38,7 +39,7 @@ export class OrdersService {
     }
     
     const order = Order.create({
-      client_id: 1,
+      client_id: createOrderDto.client_id,
       items: createOrderDto.items.map((item) => {
         const prod = products.find((product) => product.id === item.product_id)
 

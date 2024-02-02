@@ -7,9 +7,6 @@ export class OrderItem {
 
     @PrimaryGeneratedColumn()
     id: number;
- 
-    @Column()
-    name: string;
     
     @Column({type: 'int'})
     quantity: number;

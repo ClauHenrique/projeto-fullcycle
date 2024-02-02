@@ -7,6 +7,8 @@ import { Product } from './products/entities/product.entity';
 import { OrdersModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';
 import { OrderItem } from './orders/entities/order.item.entity';
+import { AuthModule } from './auth/auth.module';
+
 
 @Module({
   imports: [
@@ -21,7 +23,8 @@ import { OrderItem } from './orders/entities/order.item.entity';
       synchronize: true
     }),
     ProductsModule,
-    OrdersModule
+    OrdersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
