@@ -1,7 +1,7 @@
 version: '3'
 
-# banco de dados para API GO
 services:
+  # banco de dados para API GO
   mysql:
     image: mysql:latest
     container_name: db-produtos-go
@@ -15,9 +15,7 @@ services:
     volumes:
       - ./go-api/docker/mysql:/var/lib/mysql 
 
----
-# banco de dados para API Nest.js
-services:
+  # banco de dados para API Nest.js
   db:
     image: mysql:latest
     container_name: db-pagamento-mysql
@@ -30,3 +28,13 @@ services:
       - 3304:3306
     volumes:
       - ./microsservico-pedidos/docker/mysql:/var/lib/mysql 
+  
+  # levantar container do rabbitmq 
+  rabbtimq:
+    image: rabbitmq:3.12-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin 
+      - RABBITMQ_DEFAULT_PASS=admin

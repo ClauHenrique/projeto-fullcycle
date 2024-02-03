@@ -4,6 +4,7 @@ import { Order } from './entities/order.entity';
 import { In, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from 'src/products/entities/product.entity';
+import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 
 
 @Injectable()
@@ -11,7 +12,8 @@ export class OrdersService {
 
   constructor(
     @InjectRepository(Order) private orderRepository: Repository<Order>,
-    @InjectRepository(Product) private productRepository: Repository<Product>
+    @InjectRepository(Product) private productRepository: Repository<Product>,
+    private amqpConnection: AmqpConnection
   ){}
 
 
@@ -51,7 +53,17 @@ export class OrdersService {
       })
     })
 
-    return await this.orderRepository.save(order)
+    await this.orderRepository.save(order)
+
+    // publicar mensagem
+    // definir o nome da exchange "amq.direct" e a chave de roteamento "orderCreated"
+    await this.amqpConnection.publish('amq.direct', 'orderCreated', {
+        order_id: order.id,
+        card_hash: createOrderDto.card_hash,
+        total: order.total
+    })
+
+    return order
 
    } catch (error) {
     console.log(error);
