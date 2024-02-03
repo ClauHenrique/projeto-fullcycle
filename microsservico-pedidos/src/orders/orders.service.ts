@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Order } from './entities/order.entity';
 import { In, Repository } from 'typeorm';
@@ -60,17 +60,28 @@ export class OrdersService {
    }
   }
 
-  findAll(): Promise<Order[]> {
+  findAll(client_id: number): Promise<Order[]> {
     try {
-      return this.orderRepository.find();
+      return this.orderRepository.find({
+        where: {
+          cliente_id: client_id
+        },
+        order: {
+          created_at: 'DESC'
+        }
+      });
     } catch (error) {
       console.log(error);
       throw new Error("erro no servidor: ")
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  findOne(id: string, cliente_id: number): Promise<Order | undefined> {
+
+      return this.orderRepository.findOneByOrFail({
+        id,
+        cliente_id
+    })
   }
 
 }

@@ -19,13 +19,15 @@ export class OrdersController {
   }
 
   @Get()
-  findAll() {
-    return this.ordersService.findAll();
+  findAll(@Req() req: Request) {
+    let client_id = req['user'].sub
+    return this.ordersService.findAll(client_id);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ordersService.findOne(+id);
+  findOne(@Param('id') id: string, @Req() req: Request) {
+    let client_id = req['user'].sub
+    return this.ordersService.findOne(id, client_id);
   }
 
 }
