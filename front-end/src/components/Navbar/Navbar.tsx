@@ -1,17 +1,17 @@
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
-// import { UserMenu } from "./UserMenu";
+import { UserMenu } from "./UserMenu";
 import Link from "next/link";
 import { SearchBar } from "./SearchBar";
 import { SelectCategory } from "./SelectCategory";
 import Image from "next/legacy/image";
 import HomeIcon from "@mui/icons-material/Home";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-// import { CategoryService } from "../../services/category.service";
-// import { AuthService } from "../../services/auth.service";
+import { CategoryService } from "../../services/category.service";
+import { AuthService } from "../../services/auth.service";
 
 export async function Navbar() {
-  // const categories = await new CategoryService().getCategories();
-  // const user = new AuthService().getUser();
+  const categories = await new CategoryService().getCategories();
+  const user = new AuthService().getUser();
   return (
     <AppBar position="fixed">
       <Toolbar sx={{ backgroundColor: "background.paper" }}> 
@@ -30,7 +30,7 @@ export async function Navbar() {
         <IconButton LinkComponent={Link} size="large" href="/my-cart">
           <ShoppingCartIcon />
         </IconButton>
-        {/* <UserMenu user={user} /> */}
+        <UserMenu user={user} />
       </Toolbar>
       <Toolbar
         sx={{
@@ -40,7 +40,7 @@ export async function Navbar() {
           p: 1,
         }}
       >
-        {/* <SelectCategory categories={categories} /> */}
+        <SelectCategory categories={categories} />
 
         <Box
           component={Link}
