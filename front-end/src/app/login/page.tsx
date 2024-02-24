@@ -11,8 +11,11 @@ async function LoginPage({
   searchParams: { redirect_to?: string };
 }) {
   const { redirect_to = "/products" } = searchParams;
+  
   const authService = new AuthService();
   const user = authService.getUser();
+  console.log(user);
+  
   
   if (user && !authService.isTokenExpired()) {
     redirect(redirect_to);
@@ -42,7 +45,7 @@ async function LoginPage({
           label="E-mail"
           name="email"
           autoComplete="email"
-          defaultValue={"john"}
+          defaultValue={""}
           autoFocus
         />
         <TextField
@@ -53,7 +56,7 @@ async function LoginPage({
           label="Senha"
           type="password"
           autoComplete="current-password"
-          defaultValue={"john"}
+          defaultValue={""}
         />
         <Button
           type="submit"

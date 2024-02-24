@@ -15,6 +15,9 @@ import { OrderServiceFactory } from "../../../services/order.service";
 async function MyOrderDetail({ params }: { params: { orderId: string } }) {
 
   const order = await OrderServiceFactory.create().getOrder(params.orderId);
+
+  console.log(">>", order.status);
+  
   
   return (
     <Box>

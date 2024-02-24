@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } f
 import { OrderItem } from "./order.item.entity";
 
 export enum OrderSatus {
-    PENDIND = 'pendind',
+    PENDIND = 'pending',
     PAID = 'paid',
     FAILED = 'failed'
 }

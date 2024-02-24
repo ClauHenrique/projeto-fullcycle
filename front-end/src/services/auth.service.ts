@@ -2,10 +2,11 @@ import { cookies } from "next/headers";
 
 export class AuthService {
   async login(input: { email: string; password: string }) {
+    
     const response = await fetch(`${process.env.ORDERS_API_URL}/auth/login`, {
       method: "POST",
       body: JSON.stringify({
-        username: input.email,
+        userName: input.email,
         password: input.password,
       }),
       headers: {
@@ -13,8 +14,10 @@ export class AuthService {
       },
     });
 
+    
+
     if (response.status === 401) {
-      return { error: "Credenciais inválidas" };
+      return { error: "Credenciais inválidas"};
     }
 
     if (!response.ok) {
@@ -23,6 +26,7 @@ export class AuthService {
     }
 
     const data = await response.json();
+    
 
     const cookieStore = cookies();
     //cookie criptografado

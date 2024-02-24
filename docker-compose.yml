@@ -8,12 +8,12 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: catalog_product
       MYSQL_PASSWORD: root
     ports: 
       - 3305:3306
     volumes:
       - ./go-api/docker/mysql:/var/lib/mysql 
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
 
   # banco de dados para API Nest.js
   db:
