@@ -88,6 +88,31 @@ export class OrdersService {
     }
   }
 
+  async pay(id: string) {
+    const order = await this.orderRepository.findOneByOrFail({
+      id,
+    });
+
+    order.pay();
+    
+
+    await this.orderRepository.save(order);
+
+    return order;
+  }
+
+  async fail(id: string) {
+    const order = await this.orderRepository.findOneByOrFail({
+      id,
+    });
+
+    order.fail();
+
+    await this.orderRepository.save(order);
+
+    return order;
+  }
+
   findOne(id: string, cliente_id: number): Promise<Order | undefined> {
 
       return this.orderRepository.findOneByOrFail({

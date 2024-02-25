@@ -1,7 +1,8 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { OrderItem } from "./order.item.entity";
 
-export enum OrderSatus {
+
+export enum OrderStatus {
     PENDIND = 'pending',
     PAID = 'paid',
     FAILED = 'failed'
@@ -30,7 +31,7 @@ export class Order {
     cliente_id: number
 
     @Column()
-    status: OrderSatus = OrderSatus.PENDIND
+    status: OrderStatus = OrderStatus.PENDIND
 
     @CreateDateColumn()
     created_at: Date
@@ -61,5 +62,29 @@ export class Order {
         }, 0)
         return order
 
+    }
+
+    pay() {
+        if (this.status === OrderStatus.PAID) {
+            throw new Error("order already paid")
+        }
+
+        if (this.status === OrderStatus.FAILED) {
+            throw new Error("order already failed")            
+        }
+
+        this.status = OrderStatus.PAID
+    }
+
+    fail() {
+        if (this.status === OrderStatus.FAILED) {
+            throw new Error("order already failed")
+        }
+
+        if (this.status === OrderStatus.PAID) {
+            throw new Error("order already paid")            
+        }
+
+        this.status = OrderStatus.FAILED
     }
 }

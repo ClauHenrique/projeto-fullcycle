@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Order } from './entities/order.entity';
 import { OrderItem } from './entities/order.item.entity';
 import { Product } from '../products/entities/product.entity';
+import { OrderConsumer } from './order.consume';
 
 @Module({
   imports: [
@@ -13,6 +14,6 @@ import { Product } from '../products/entities/product.entity';
     ])
   ],
   controllers: [OrdersController],
-  providers: [OrdersService],
+  providers: [OrdersService, OrderConsumer],
 })
 export class OrdersModule {}
