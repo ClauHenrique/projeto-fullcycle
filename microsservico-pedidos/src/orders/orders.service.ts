@@ -57,7 +57,7 @@ export class OrdersService {
 
     // publicar mensagem
     // definir o nome da exchange "amq.direct" e a chave de roteamento "orderCreated"
-    await this.amqpConnection.publish('amq.direct', 'orderCreated', {
+    await this.amqpConnection.publish('amq.direct', 'OrderCreated', {
         order_id: order.id,
         card_hash: createOrderDto.card_hash,
         total: order.total

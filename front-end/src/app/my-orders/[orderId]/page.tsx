@@ -57,6 +57,13 @@ async function MyOrderDetail({ params }: { params: { orderId: string } }) {
                 ? "Pedido pago"
                 : "Pedido cancelado"}
             </Typography>
+
+            <Typography variant="h5" sx={{ textAlign: "center", color: "error.main" }}>
+              {order.status === OrderStatus.FAILED
+                ? "Este serviço só suporta pagamentos de até 2.600,00R$"
+                : ""}
+            </Typography>
+
           </Box>
         </Grid2>
         <Grid2 xs={12} md={6}>
