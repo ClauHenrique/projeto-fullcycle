@@ -13,10 +13,12 @@ fi
 docker-compose up -d
 
 cd ./microsservico-pedidos
+npm install
 npm run start &
 
 cd ../front-end
 npx serve -l 9000 images/ &
+npm install
 npm run dev &
 
 cd ../go-api/cmd/catalog
