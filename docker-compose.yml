@@ -13,7 +13,7 @@ services:
       - 3305:3306
     volumes:
       - ./go-api/docker/mysql:/var/lib/mysql 
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./db-go-api.sql:/docker-entrypoint-initdb.d/db.sql
 
   # banco de dados para API Nest.js
   db:
@@ -28,6 +28,7 @@ services:
       - 3304:3306
     volumes:
       - ./microsservico-pedidos/docker/mysql:/var/lib/mysql 
+      - ./db-nest-api.sql:/docker-entrypoint-initdb.d/db.sql
   
   # levantar container do rabbitmq 
   rabbtimq:
