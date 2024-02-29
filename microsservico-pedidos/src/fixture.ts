@@ -10,7 +10,7 @@ async function bootstrap() {
   const dataSource = app.get<DataSource>(getDataSourceToken());
   await dataSource.synchronize(true);
 
-  const productRepo = dataSource.getRepository('Product');
+  const productRepo = dataSource.getRepository('product');
   await productRepo.insert([
     {
       id: '7f8c9d8e-9f0a-1b2c-3d4e-5f6g7h8i9j0k',

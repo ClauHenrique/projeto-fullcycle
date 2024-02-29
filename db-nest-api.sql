@@ -1,8 +1,8 @@
-CREATE DATABASE `pagamento_nest`;
+CREATE DATABASE IF NOT EXISTS `pagamento_nest`;
 
 use `pagamento_nest`;
 
-CREATE TABLE `products` (
+CREATE TABLE `product` (
   `id` varchar(36) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`)
 );
 
-INSERT INTO `pagamento_nest`.`products` (`id`,`name`,`description`,`price`,`image_url`)
+INSERT INTO `pagamento_nest`.`product` (`id`,`name`,`description`,`price`,`image_url`)
 VALUES 
 ("7f8c9d8e-9f0a-1b2c-3d4e-5f6g7h8i9j0k","Product 1","Description 1", 100, "http://localhost:9000/products/1.png"),
 ("66805003-f9a2-4772-b577-d5ff66207707","Product 2","Description 2", 200, "http://localhost:9000/products/2.png"),

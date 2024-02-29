@@ -60,7 +60,7 @@ async function MyOrderDetail({ params }: { params: { orderId: string } }) {
 
             <Typography variant="h5" sx={{ textAlign: "center", color: "error.main" }}>
               {order.status === OrderStatus.FAILED
-                ? "Este serviço só suporta pagamentos de até 2.600,00R$"
+                ? "Só são validos pagamentos de até 2.600,00R$"
                 : ""}
             </Typography>
 
