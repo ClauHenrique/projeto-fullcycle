@@ -38,6 +38,26 @@ export class AuthService {
     cookieStore.delete("token");
   }
 
+  async createUser(input: { email: string; password: string }) {
+    
+    const response = await fetch(`${process.env.ORDERS_API_URL}/user/create`, {
+      method: "POST",
+      body: JSON.stringify({
+        name: input.email,
+        password: input.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+
+    if (!response.ok) {
+      const error = await response.json();
+      return { error };
+    }
+  }
+
   getUser() {
     const cookieStore = cookies();
     const token = cookieStore.get("token")?.value;

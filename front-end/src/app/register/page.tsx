@@ -1,26 +1,16 @@
 import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { loginAction } from "../../server-actions/auth.action";
+import { RegisterAction } from "../../server-actions/auth.action";
 import { AuthService } from "../../services/auth.service";
 import { redirect } from "next/navigation";
-import Link from "next/link";
 // import { Form } from "../../components/Form";
 
-async function LoginPage({
+async function RegisterPage({
   searchParams,
 }: {
   searchParams: { redirect_to?: string };
 }) {
   const { redirect_to = "/products" } = searchParams;
-  
-  const authService = new AuthService();
-  const user = authService.getUser();
-  console.log(user);
-  
-  
-  if (user && !authService.isTokenExpired()) {
-    redirect(redirect_to);
-  }
 
   return (
     <Box
@@ -35,9 +25,9 @@ async function LoginPage({
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Entre com sua conta
+        Crie uma conta
       </Typography>
-      <Box component={"form"} noValidate sx={{ mt: 1 }} action={loginAction}>
+      <Box component={"form"} noValidate sx={{ mt: 1 }} action={RegisterAction}>
         <input type="hidden" name="redirect_to" value={redirect_to} />
         <TextField
           margin="normal"
@@ -59,25 +49,17 @@ async function LoginPage({
           autoComplete="current-password"
           defaultValue={""}
         />
-
-        <Link
-          href={`/register`}
-          style={{ textDecoration: "none" }}
-        >
-          Criar uma conta
-        </Link>
-
         <Button
           type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          Login
+          Criar
         </Button>
       </Box>
     </Box>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
