@@ -11,4 +11,10 @@
 - O script abrirá o navegador na pagina do administrador do rabbitmq (se não abrir, atualize a pagina)
     - faça login utilizando "admin" tanto no login quanto na senha
 - Você deve criar uma fila de menssagens a serem processadas chamada "orders":
-- ![diagrama](https://github.com/ClauHenrique/projeto-fullcycle/blob/main/img.png)
+![diagrama](https://github.com/ClauHenrique/projeto-fullcycle/blob/main/criar_fila.jpeg)
+- Entre na fila que foi criada para configurar o roteamento das mensagens
+![diagrama](https://github.com/ClauHenrique/projeto-fullcycle/blob/main/selecionar_fila.jpeg)
+- Crie um roteamento para essa fila e defina a exchange
+![diagrama](https://github.com/ClauHenrique/projeto-fullcycle/blob/main/routing_key.jpeg)
+- Após isso, volte ao terminal onde o script está sendo utilizado, digite "y" e precione "enter". O script cuidará do resto
+> Para abrir o front no navegador, acesse localhost:3000. O Nest.js por padrão utiliza esta porta. Se ela estiver ocupada, ele tentará na porta 3001... e assim consecutivamente
